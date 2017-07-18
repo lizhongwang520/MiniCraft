@@ -14,13 +14,14 @@ src = 'textures/texture.png'
 # Set textures coord
 textures = {'GRASS': [(1, 0), (0, 1), (0, 0)], 'SAND': [(1, 1), (1, 1), (1, 1)], 'BRICK': [(2, 0), (2, 0), (2, 0)], 'STONE': [(2, 1), (2, 1), (2, 1)]}
 
-# Window
-Window(fullscreen=True, caption='MiniCraft', model=Game(Scale(src, textures)))
-
 # Music
 Audio('audios/background.wav').play(recycle=True)
 
+# Window
+Window(fullscreen=False, caption='MiniCraft', model=Game(Scale(src, textures)))
 
+
+# Global settings
 glClearColor(0.5, 0.69, 1.0, 1)
 glEnable(GL_CULL_FACE)
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)

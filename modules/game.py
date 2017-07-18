@@ -1,6 +1,5 @@
 import pyglet
 import time
-import math
 import random
 
 from pyglet import image
@@ -38,6 +37,8 @@ class Game(object):
         self.sectors = {}
         self.queue = deque()
 
+        self.__initialize()
+
     def __initialize(self):
         n = 80
         s = 1
@@ -57,7 +58,7 @@ class Game(object):
             h = random.randint(1, 6)  # height of the hill
             s = random.randint(4, 8)  # 2 * s is the side length of the hill
             d = 1  # how quickly to taper off the hills
-            t = random.choice([self.model.features['GRASS'], self.model.features['SAND'], self.model.features['BRICK']])
+            t = random.choice([self.scaler.features['GRASS'], self.scaler.features['SAND'], self.scaler.features['BRICK']])
             for y in range(c, c + h):
                 for x in range(a - s, a + s + 1):
                     for z in range(b - s, b + s + 1):
@@ -161,6 +162,19 @@ class Game(object):
             if (x + dx, y + dy, z + dz) not in self.world:
                 return True
         return False
+
+    def check_neighbors(self, position):
+        x, y, z = position
+        for dx, dy, dz in self.settings['FACES']:
+            key = (x + dx, y + dy, z + dz)
+            if key not in self.world:
+                continue
+            if self.exposed(key):
+                if key not in self.shown:
+                    self.show_block(key)
+            else:
+                if key in self.shown:
+                    self.hide_block(key)
 
     def _enqueue(self, func, *arg):
         self.queue.append((func, arg))

@@ -1,5 +1,6 @@
 import pyglet
 import math
+import pdb
 
 from pyglet.gl import *
 from pyglet.window import key, mouse
@@ -50,6 +51,7 @@ class Window(pyglet.window.Window):
     def on_draw(self):
         # Clear window
         self.clear()
+        # Drawing 3d first
         self.set_3d()
         glColor3d(1, 1, 1)
         self.model.batch.draw()

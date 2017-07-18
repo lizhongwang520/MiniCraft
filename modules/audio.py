@@ -17,4 +17,3 @@ class Audio(object):
         self.player.on_eos = pyglet.media.SourceGroup.loop
         # Play
         self.player.play()
-

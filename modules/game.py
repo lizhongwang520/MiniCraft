@@ -49,7 +49,9 @@ class Game(object):
                 self.add_block((x, y - 3, z), self.scaler.features['STONE'], immediate=False)
                 if x in (-n, n) or z in (-n, n):
                     for dy in range(-2, 3):
+                        print(self.scaler.features['STONE'])
                         self.add_block((x, y + dy, z), self.scaler.features['STONE'], immediate=False)
+
         o = n - 10
         for _ in range(120):
             a = random.randint(-o, o)  # x position of the hill
@@ -68,6 +70,7 @@ class Game(object):
                             continue
                         self.add_block((x, y, z), t, immediate=False)
                 s -= d  # decrement side lenth so hills taper off
+
 
     def add_block(self, position, texture, immediate=True):
         if position in self.world:

@@ -1,9 +1,9 @@
-
 class Scale(object):
 
     def __init__(self, src=None, textures=None):
         self.src = src
         self.features = {}
+
         for key, value in textures.items():
             self.features[key] = self.__tex_coords(value)
 
@@ -41,7 +41,7 @@ class Scale(object):
     def __tex_coord(self, x, y, n=4):
         m = 1.0 / n
         dx = x * m
-        dy = x * m
+        dy = y * m
         return dx, dy, dx + m, dy, dx + m, dy + m, dx, dy + m
 
     '''
